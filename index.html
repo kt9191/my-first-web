@@ -3,19 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>내 첫 번째 웹사이트</title>
+    <title>홍길동 - 자기소개</title>
     <style>
-        body { font-family: Arial; margin: 0; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-        .container { max-width: 800px; margin: 0 auto; background: white; padding: 40px; border-radius: 10px; }
-        h1 { color: #333; text-align: center; }
-        .button { background: #3498db; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+        body { 
+            font-family: 'Arial', sans-serif; 
+            margin: 0; 
+            padding: 20px; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            background: white; 
+            padding: 40px; 
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            display: block;
+            border: 5px solid #3498db;
+        }
+        h1 { 
+            color: #2c3e50; 
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        .section {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        .section h2 {
+            color: #3498db;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .hobby-list {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        .hobby-tag {
+            background: #3498db;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+        .contact-btn {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 25px;
+            margin: 10px;
+            transition: background 0.3s;
+        }
+        .contact-btn:hover {
+            background: #c0392b;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🎉 안녕하세요! 제 첫 번째 웹사이트입니다</h1>
-        <p>이곳에 자기소개나 포트폴리오를 넣을 수 있어요.</p>
-        <button class="button" onclick="alert('버튼이 작동해요!')">클릭해보세요</button>
+        <!-- 프로필 사진 (임시로 아바타 사용) -->
+        <img src="https://via.placeholder.com/150/3498db/ffffff?text=나" class="profile-img" alt="프로필 사진">
+        
+        <h1>안녕하세요! 홍길동입니다 👋</h1>
+        <p class="subtitle">웹 개발을 배우는 초보 개발자</p>
+        
+        <div class="section">
+            <h2>📝 자기소개</h2>
+            <p>안녕하세요! 저는 웹 개발에 관심이 많은 홍길동입니다. 
+            AI 도구들을 활용해서 혼자 개발을 배우고 있어요. 
+            첫 번째 웹사이트를 성공적으로 만들어서 정말 기뻐요!</p>
+        </div>
+        
+        <div class="section">
+            <h2>🎯 관심사 & 목표</h2>
+            <ul>
+                <li>🤖 AI를 활용한 웹 개발</li>
+                <li>💰 1인 개발로 부업 시작하기</li>
+                <li>📱 실용적인 웹 도구 만들기</li>
+                <li>🚀 지속적인 학습과 성장</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2>🎨 취미</h2>
+            <div class="hobby-list">
+                <span class="hobby-tag">코딩</span>
+                <span class="hobby-tag">독서</span>
+                <span class="hobby-tag">영화감상</span>
+                <span class="hobby-tag">게임</span>
+                <span class="hobby-tag">여행</span>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📞 연락처</h2>
+            <p>궁금한 것이 있으시면 언제든 연락주세요!</p>
+            <a href="mailto:your-email@gmail.com" class="contact-btn">📧 이메일</a>
+            <a href="https://github.com/당신계정" class="contact-btn">💻 GitHub</a>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px; color: #7f8c8d;">
+            <p>🌟 "시작이 반이다" - 첫 번째 웹사이트 완성! 🌟</p>
+        </div>
     </div>
 </body>
 </html>
