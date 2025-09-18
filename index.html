@@ -20,13 +20,47 @@
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
+        .profile-img-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 30px;
+            cursor: pointer;
+        }
         .profile-img {
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            margin: 0 auto 30px;
-            display: block;
             border: 5px solid #3498db;
+            object-fit: cover;
+            transition: all 0.3s;
+        }
+        .profile-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .upload-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+            color: white;
+            font-size: 14px;
+            text-align: center;
+        }
+        .profile-img-container:hover .upload-overlay {
+            opacity: 1;
+        }
+        .file-input {
+            display: none;
         }
         h1 { 
             color: #2c3e50; 
@@ -76,12 +110,25 @@
         .contact-btn:hover {
             background: #c0392b;
         }
+        .photo-tip {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 12px;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- 프로필 사진 (임시로 아바타 사용) -->
-        <img src="https://via.placeholder.com/150/3498db/ffffff?text=나" class="profile-img" alt="프로필 사진">
+        <!-- 프로필 사진 업로드 -->
+        <div class="profile-img-container" onclick="document.getElementById('photoInput').click()">
+            <img id="profileImage" src="https://via.placeholder.com/150/3498db/ffffff?text=📷" class="profile-img" alt="프로필 사진">
+            <div class="upload-overlay">
+                📷<br>사진 변경
+            </div>
+        </div>
+        <p class="photo-tip">👆 사진을 클릭해서 프로필 사진을 변경하세요</p>
+        <input type="file" id="photoInput" class="file-input" accept="image/*">
         
         <h1>안녕하세요! 홍길동입니다 👋</h1>
         <p class="subtitle">웹 개발을 배우는 초보 개발자</p>
@@ -125,5 +172,47 @@
             <p>🌟 "시작이 반이다" - 첫 번째 웹사이트 완성! 🌟</p>
         </div>
     </div>
+
+    <script>
+        // 페이지 로드시 저장된 사진 불러오기
+        window.onload = function() {
+            const savedImage = localStorage.getItem('profileImage');
+            if (savedImage) {
+                document.getElementById('profileImage').src = savedImage;
+            }
+        }
+
+        // 사진 업로드 처리
+        document.getElementById('photoInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                // 파일 크기 체크 (5MB 이하)
+                if (file.size > 5 * 1024 * 1024) {
+                    alert('사진 파일이 너무 큽니다! 5MB 이하의 사진을 선택해주세요.');
+                    return;
+                }
+
+                // 이미지 파일인지 확인
+                if (!file.type.startsWith('image/')) {
+                    alert('이미지 파일만 업로드 가능합니다!');
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imageUrl = e.target.result;
+                    
+                    // 프로필 이미지 변경
+                    document.getElementById('profileImage').src = imageUrl;
+                    
+                    // 브라우저에 저장 (다음에 방문해도 유지됨)
+                    localStorage.setItem('profileImage', imageUrl);
+                    
+                    alert('프로필 사진이 변경되었습니다! 🎉');
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
 </body>
 </html>
